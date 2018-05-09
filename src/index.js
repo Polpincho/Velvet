@@ -19,11 +19,15 @@ class Of extends React.Component {
     super(props);
     this.state = {
       value: null
-    };    
+    };
   }
 
   render() {
-    return <h1 className="line" onClick={() => alert("click")} />;
+    return (
+      <button className="line" onClick={() => alert("click")}>
+        echo(this.nOf)
+      </button>
+    );
   }
 }
 
@@ -33,15 +37,20 @@ class ProdLine extends React.Component {
     this.state = {
       value: null
     };
-    this.OFs = [Of];
+    this.OFs = [Of, Of, Of];
     this.OFs[0] = Of;
   }
 
-  render() {
+  renderOfs() {
+    var outs = [];
     for (var i = 0; i < this.OFs.length; i++) {
-      this.OFs[i].render();
+      outs.push(<Of />);
     }
-    )
+    return outs;
+  }
+
+  render() {
+    return <div className="board-row">{this.renderOfs()}</div>;
   }
 }
 

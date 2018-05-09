@@ -8,20 +8,40 @@ const styles = {
   textAlign: "center"
 };
 
+class Of extends React.Component {
+  nOf = "1234";
+  nBom = "1234";
+  UnitTot = "10";
+  UnitProd = "5";
+  startTime = "00:00";
+  endTime = "01:00";
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: null
+    };    
+  }
+
+  render() {
+    return <h1 className="line" onClick={() => alert("click")} />;
+  }
+}
+
 class ProdLine extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       value: null
     };
+    this.OFs = [Of];
+    this.OFs[0] = Of;
   }
 
   render() {
-    return (
-      <button className="line" onClick={() => alert("click")}>
-        {this.props.value}
-      </button>
-    );
+    for (var i = 0; i < this.OFs.length; i++) {
+      this.OFs[i].render();
+    }
+    )
   }
 }
 
@@ -34,10 +54,12 @@ class Dashboard extends React.Component {
   }
 
   renderProdLine(i) {
-    return <ProdLine value={this.state.lines[i]} />;
+    return <ProdLine />;
   }
 
   render() {
+    const status = "Example";
+
     return (
       <div>
         <div className="status">{status}</div>
@@ -63,7 +85,7 @@ class Game extends React.Component {
     return (
       <div className="game">
         <div className="game-board">
-          <Dashoard />
+          <Dashboard />
         </div>
         <div className="game-info">
           <div>{/* status */}</div>

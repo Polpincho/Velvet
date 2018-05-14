@@ -26,6 +26,8 @@ class ProdLine extends React.Component {
 }
 
 class Dashboard extends React.Component {
+  //var lines = [];
+
   constructor(props) {
     super(props);
     this.state = {
@@ -38,22 +40,30 @@ class Dashboard extends React.Component {
   }
 
   render() {
+    var numrows = 3;
+    for (var i = 0; i < numrows; i++) {
+      //rows.push("<div className="board-row">{this.renderProdLine(i)}</div>");
+    }
+    return <div />;
+  }
+}
+
+class Game extends React.Component {
+  render() {
     return (
-      <div>
-        <div className="status">{status}</div>
-        <div className="board-row">{this.renderProdLine(1)}</div>
-        <div className="board-row">{this.renderProdLine(2)}</div>
-        <div className="board-row">{this.renderProdLine(3)}</div>
-        <div className="board-row">{this.renderProdLine(4)}</div>
-        <div className="board-row">{this.renderProdLine(5)}</div>
-        <div className="board-row">{this.renderProdLine(6)}</div>
-        <div className="board-row">{this.renderProdLine(7)}</div>
-        <div className="board-row">{this.renderProdLine(8)}</div>
-        <div className="board-row">{this.renderProdLine(9)}</div>
-        <div className="board-row">{this.renderProdLine(10)}</div>
-        <div className="board-row">{this.renderProdLine(11)}</div>
-        <div className="board-row">{this.renderProdLine(12)}</div>
+      <div className="game">
+        <div className="game-board">
+          <Dashboard />
+        </div>
+        <div className="game-info">
+          <div>{/* status */}</div>
+          <ol>{/* TODO */}</ol>
+        </div>
       </div>
     );
   }
 }
+
+// ========================================
+
+ReactDOM.render(<Game />, document.getElementById("root"));

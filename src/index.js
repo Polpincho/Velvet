@@ -1,69 +1,47 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import Time from "react-time";
+import Rx from "rxjs";
 
-const styles = {
-  fontFamily: "sans-serif",
-  textAlign: "center"
-};
+var timerElement = document.querySelector("#timer");
+var buttonRefresh = document.querySelector("#button-refresh");
 
-class ProdLine extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: null
-    };
+class Counter {
+  constructor(value) {
+    this.value = value;
   }
-
-  render() {
-    return (
-      <button className="line" onClick={() => alert("click")}>
-        {this.props.value}
-      </button>
-    );
+  tick() {
+    this.value = this.value === 0 ? 60 : this.value - 1;
+  }
+  reset() {
+    this.value = 60;
+  }
+  getValue() {
+    return this.value;
+  }
+  setValue(value) {
+    this.value = value;
   }
 }
 
-class Dashboard extends React.Component {
-  //var lines = [];
+var counter = new Counter(60);
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      lines: Array(9).fill(null)
-    };
-  }
+function update() {}
 
-  renderProdLine(i) {
-    return <ProdLine value={this.state.lines[i]} />;
-  }
+var fetch$ = Rx.Observable.ajax("" + "stations").map(e => e.response);
 
-  render() {
-    var numrows = 3;
-    for (var i = 0; i < numrows; i++) {
-      //rows.push("<div className="board-row">{this.renderProdLine(i)}</div>");
-    }
-    return <div />;
-  }
-}
+var timer$ = Rx.Observable.timer(0, 1000)
+  .do(() => {
+    timerElement.innerHTML = counter.getValue();
+    counter.tick();
+  })
+  .filter(() => counter.getValue() + 1 === 30);
 
-class Game extends React.Component {
-  render() {
-    return (
-      <div className="game">
-        <div className="game-board">
-          <Dashboard />
-        </div>
-        <div className="game-info">
-          <div>{/* status */}</div>
-          <ol>{/* TODO */}</ol>
-        </div>
-      </div>
-    );
-  }
-}
+var refresh$ = Rx.Observable.fromEvent(buttonRefresh, "click").do(() => {
+  counter.reset();
+  timerElement.innerHTML = counter.getValue();
+  counter.tick();
+});
 
-// ========================================
-
-ReactDOM.render(<Game />, document.getElementById("root"));
+var updater$ = Rx.Observable.merge(timer$, refresh$)
+  .switchMap(val => fetch$)
+  .subscribe(stations => {
+    update(stations);
+  });

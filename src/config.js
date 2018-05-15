@@ -1,7 +1,7 @@
 var config = {
   numLines: 7,
   date: "15/05/2018 00:00",
-  apiUrl: '//localhost:8888/api/',
+  apiUrl: "//localhost:8888/api/",
   lines: [
     {
       name: "Linia1",
@@ -14,7 +14,7 @@ var config = {
           final: 2,
           uniactual: 100,
           uniFinal: 200
-        },
+        }
       ]
     },
     {
@@ -33,7 +33,7 @@ var config = {
           name: "Of2",
           codef: "0003",
           init: 2,
-          final: 5;
+          final: 5,
           uniactual: 100,
           uniFinal: 100
         }
@@ -96,7 +96,7 @@ var config = {
           final: 11,
           uniactual: 100,
           uniFinal: 100
-        },
+        }
       ]
     },
     {
@@ -110,7 +110,7 @@ var config = {
           final: 2,
           uniactual: 100,
           uniFinal: 100
-        },
+        }
       ]
     },
     {
@@ -124,7 +124,7 @@ var config = {
           final: 2,
           uniactual: 100,
           uniFinal: 100
-        },
+        }
       ]
     },
     {
@@ -138,8 +138,10 @@ var config = {
           final: 2,
           uniactual: 100,
           uniFinal: 100
-        },
+        }
       ]
-    },
+    }
   ]
-}
+};
+
+export default config;

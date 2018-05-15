@@ -3,12 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "dependencies": {
-    "moment": "2.22.1",
-    "react": "16.3.2",
-    "react-dom": "16.3.2",
-    "react-horizontal-timeline": "1.5.3",
-    "react-scripts": "1.1.4",
-    "react-time": "4.3.0",
     "axios": "^0.17.1",
     "es6-promise": "^4.1.1",
     "express": "^4.16.2",
@@ -30,9 +24,10 @@
     "jsdom": "^11.5.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "ts-node server.ts",
+    "sass":
+      "node-sass --output-style compressed styles/base.scss > dist/styles.css",
+    "test":
+      "mocha --require ts-node/register './{,!(node_modules)/**}/*.spec.ts'"
   }
 }

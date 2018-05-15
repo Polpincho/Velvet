@@ -1,6 +1,6 @@
-var { districts, defaultLatitude, defaultLongitude, defaultZoom } = config;
+var { numLines, date } = config;
 
-var counter = new Counter(30);
+var counter = new Counter(60);
 
 var map = Map(defaultLatitude, defaultLongitude, defaultZoom);
 var markersLayer = new L.FeatureGroup();

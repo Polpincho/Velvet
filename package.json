@@ -2,8 +2,6 @@
   "name": "velvet",
   "version": "1.0.0",
   "description": "",
-  "keywords": [],
-  "main": "src/main.js",
   "dependencies": {
     "moment": "2.22.1",
     "react": "16.3.2",

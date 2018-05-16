@@ -1,7 +1,5 @@
-var config = {
+var test1 = {
   numLines: 7,
-  date: "15/05/2018 00:00",
-  apiUrl: "//localhost:8888/api/",
   lines: [
     {
       name: "Linia1",
@@ -144,4 +142,4 @@ var config = {
   ]
 };
 
-export default config;
+export default test1;

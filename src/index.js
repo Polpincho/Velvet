@@ -3,7 +3,159 @@ import React from "react";
 import Rx from "rxjs";
 
 //var dashboard = Dashboard(defaultLatitude, defaultLongitude);
-import test1 from "./test1.js";
+var test1 = {
+  numLines: 7,
+  lines: [
+    {
+      name: "Linia1",
+      code: 0,
+      numofs: 1,
+      of: [
+        {
+          name: "Of1",
+          codef: "0001",
+          init: 0,
+          final: 2,
+          uniactual: 100,
+          uniFinal: 200
+        }
+      ]
+    },
+    {
+      name: "Linia2",
+      code: 0,
+      numofs: 2,
+      of: [
+        {
+          name: "Of2",
+          codef: "0002",
+          init: 0,
+          final: 2,
+          uniactual: 100,
+          uniFinal: 200
+        },
+        {
+          name: "Of3",
+          codef: "0003",
+          init: 2,
+          final: 5,
+          uniactual: 100,
+          uniFinal: 100
+        }
+      ]
+    },
+    {
+      name: "Linia3",
+      code: 0,
+      numofs: 2,
+      of: [
+        {
+          name: "Of4",
+          codef: "0004",
+          init: 0,
+          final: 2,
+          uniactual: 100,
+          uniFinal: 100
+        },
+        {
+          name: "Of5",
+          codef: "0005",
+          init: 6,
+          final: 8,
+          uniactual: 100,
+          uniFinal: 100
+        }
+      ]
+    },
+    {
+      name: "Linia4",
+      code: 0,
+      numofs: 4,
+      of: [
+        {
+          name: "Of6",
+          codef: "0006",
+          init: 0,
+          final: 2,
+          uniactual: 100,
+          uniFinal: 100
+        },
+        {
+          name: "Of7",
+          codef: "0007",
+          init: 2,
+          final: 5,
+          uniactual: 100,
+          uniFinal: 100
+        },
+        {
+          name: "Of8",
+          codef: "0008",
+          init: 5,
+          final: 6,
+          uniactual: 100,
+          uniFinal: 100
+        },
+        {
+          name: "Of9",
+          codef: "0009",
+          init: 7,
+          final: 11,
+          uniactual: 100,
+          uniFinal: 100
+        }
+      ]
+    },
+    {
+      name: "Linia5",
+      code: 0,
+      numofs: 1,
+      of: [
+        {
+          name: "Of10",
+          codef: "0010",
+          init: 0,
+          final: 2,
+          uniactual: 100,
+          uniFinal: 100
+        }
+      ]
+    },
+    {
+      name: "Linia6",
+      code: 0,
+      numofs: 1,
+      of: [
+        {
+          name: "Of11",
+          codef: "0011",
+          init: 0,
+          final: 2,
+          uniactual: 100,
+          uniFinal: 100
+        }
+      ]
+    },
+    {
+      name: "Linia7",
+      code: 0,
+      numofs: 1,
+      of: [
+        {
+          name: "Of12",
+          codef: "0012",
+          init: 0,
+          final: 2,
+          uniactual: 100,
+          uniFinal: 100
+        }
+      ]
+    }
+  ]
+};
+
+export default test1;
+
 var timerElement = document.querySelector("#timer");
 var buttonRefresh = document.querySelector("#button-refresh");
 
@@ -33,27 +185,18 @@ class Of extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      numOfs: props.numOf,
-      BOM: props.bom,
-      actunit: props.actunit,
-      totunit: props.totunit,
-      strtime: props.strtime,
-      endtime: props.endtime,
-      actunit: props.actunit
+      nameOf: props.name,
+      BOM: props.code,
+      actunit: props.actU,
+      totunit: props.endU,
+      strtime: props.initT,
+      endtime: props.endT
     };
+    this.key = props.id2;
   }
 
   render() {
-    return (
-      <div>
-        <button type="button" class="btn">
-          prev
-        </button>
-        <button type="button" class="btn">
-          next pys
-        </button>
-      </div>
-    );
+    return <button>{this.state.nameOf}</button>;
   }
 }
 
@@ -62,28 +205,44 @@ class Of extends React.Component {
 class Line extends React.Component {
   constructor(props) {
     super(props);
+    this.key = props.key2;
     this.state = {
-      numOfs: props.numLines,
-      heigth: props.order,
+      numofs: props.numofs,
+      heigth: props.numLine,
+      key2: props.key2,
       ofs: []
     };
-  }
 
-  addOf(of) {
-    this.status.ofs[of.num] = of;
+    for (var i = 0; i < parseInt(this.state.numofs); ++i) {
+      var of1 = props.ofs[i];
+      this.state.ofs.push(of1);
+    }
   }
 
   render() {
-    return (
-      <div>
-        <button type="button" class="btn">
-          prev
-        </button>
-        <button type="button" class="btn">
-          nextpya
-        </button>
-      </div>
-    );
+    var row = [];
+    for (var i = 0; i < this.state.numofs; ++i) {
+      var of1 = this.state.ofs[i];
+      var nameof = of1.name;
+      var codeof = of1.codef;
+      var initof = of1.init;
+      var endof = of1.final;
+      var actuni = of1.uniactual;
+      var enduni = of1.uniFinal;
+
+      row.push(
+        <Of
+          id2={"Of" + codeof}
+          name={nameof}
+          code={codeof}
+          initT={initof}
+          endT={endof}
+          actU={actuni}
+          endU={enduni}
+        />
+      );
+    }
+    return <div key={this.state.key2}>{row}</div>;
   }
 }
 
@@ -96,26 +255,51 @@ class Dashboard extends React.Component {
       numlines: props.numLines,
       lines: []
     };
-    for (var i = 0; i < this.state.numlines; ++i) {
-      /*var line = props.lines[i];
-      this.status.lines[line.name] = line;*/
-      this.status.lines.push(<h1>123123 </h1>);
+
+    for (var i = 0; i < parseInt(this.state.numlines); ++i) {
+      var line = props.lines[i];
+      this.state.lines.push(line);
     }
   }
 
   render() {
     var row = [];
     for (var i = 0; i < this.state.numlines; ++i) {
-      row.push(<div>{this.state.lines[i]}</div>);
+      var line = this.state.lines[i];
+      var numofs = line.numofs;
+      var linename = line.name;
+      var linecode = line.code;
+      var ofs = line.of;
+      row.push(
+        <Line
+          key={"Line" + i}
+          numofs={numofs}
+          lines={linename}
+          numLine={i}
+          ofs={ofs}
+        />
+      );
     }
     return <div>{row}</div>;
   }
 }
 
 //-------------------------------------------------------------------       ----------------------------------------------------------------------
-var { numlines, lines } = test1;
+var numlines = test1.numLines;
+var lines = test1.lines;
 
-const dashBoard = <Dashboard numLines={numlines} lines={lines} />;
+var dashBoard = (
+  <div>
+    <Dashboard key="dash1" numLines={numlines} lines={lines} />
+  </div>
+);
+
+var timebar = (
+  <div>
+    <timerElement />
+  </div>
+);
+
 var counter = new Counter(60);
 
 function updateLine(lines) {}
@@ -139,5 +323,6 @@ var updater$ = Rx.Observable.merge(timer$, refresh$)
   .switchMap(val => fetch$)
   .subscribe(lines => {
     updateLine(lines);
+    ReactDOM.render(timebar, document.getElementById("timerbar"));
     ReactDOM.render(dashBoard, document.getElementById("dashboard"));
   });

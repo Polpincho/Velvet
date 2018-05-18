@@ -9,15 +9,23 @@ var test1 = {
     {
       name: "Linia1",
       code: 0,
-      numofs: 1,
+      numofs: 2,
       of: [
         {
           name: "Of1",
           codef: "0001",
-          init: 0,
+          init: 1,
           final: 2,
           uniactual: 100,
           uniFinal: 200
+        },
+        {
+          name: "Of30",
+          codef: "0030",
+          init: 2,
+          final: 24,
+          uniactual: 100,
+          uniFinal: 100
         }
       ]
     },
@@ -154,10 +162,44 @@ var test1 = {
   ]
 };
 
-export default test1;
-
 var timerElement = document.querySelector("#timer");
 var buttonRefresh = document.querySelector("#button-refresh");
+//-----------------------------------------------------FUNCTIONS---------------------------------------------------
+
+function getDayWeek() {
+  var d = new Date();
+  var weekday = new Array(7);
+  weekday[0] = "Domingo";
+  weekday[1] = "Lunes";
+  weekday[2] = "Martes";
+  weekday[3] = "Miercoles";
+  weekday[4] = "Jueves";
+  weekday[5] = "Viernes";
+  weekday[6] = "Sabado";
+
+  var n = weekday[d.getDay()];
+  return n;
+}
+
+function getMonthName() {
+  var d = new Date();
+  var months = new Array(12);
+  months[0] = "Ene";
+  months[1] = "Febr";
+  months[2] = "Mar";
+  months[3] = "Abr";
+  months[4] = "May";
+  months[5] = "Jun";
+  months[6] = "Jul";
+  months[7] = "Ago";
+  months[8] = "Sept";
+  months[9] = "Oct";
+  months[10] = "Nov";
+  months[11] = "Dic";
+
+  var n = months[d.getMonth()];
+  return n;
+}
 
 //-------------------------------------------------------------------COUNTER-------------------------------------------------------------------------
 
@@ -196,7 +238,16 @@ class Of extends React.Component {
   }
 
   render() {
-    return <button>{this.state.nameOf}</button>;
+    var percmov = this.state.strtime / 24 * 100;
+    var perc = (this.state.endtime - this.state.strtime) / 24 * 100;
+    const styles = {
+      position: "absolute",
+      left: percmov.toString() + "%",
+      width: perc.toString() + "%",
+      height: "100%",
+      zindex: "2"
+    };
+    return <button style={styles}>{this.state.nameOf}</button>;
   }
 }
 
@@ -220,6 +271,11 @@ class Line extends React.Component {
   }
 
   render() {
+    const styles = {
+      position: "relative",
+      width: "100%",
+      height: (90 / 10).toString() + "%"
+    };
     var row = [];
     for (var i = 0; i < this.state.numofs; ++i) {
       var of1 = this.state.ofs[i];
@@ -242,7 +298,39 @@ class Line extends React.Component {
         />
       );
     }
-    return <div key={this.state.key2}>{row}</div>;
+    return (
+      <div key={this.state.key2} style={styles}>
+        {row}
+      </div>
+    );
+  }
+}
+
+class Timeline extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    const stylesglobal = {
+      position: "relative",
+      border: "1px solid gray",
+      width: "100%"
+    };
+    const styles = {
+      position: "relative",
+      border: "1px solid gray",
+      width: (100 / 24).toString() + "%"
+    };
+    var row = [];
+    for (var i = 0; i < 24; ++i) {
+      row.push(<th style={styles}>{i + ":00"}</th>);
+    }
+    return (
+      <table style={stylesglobal}>
+        <tr style={stylesglobal}>{row}</tr>
+      </table>
+    );
   }
 }
 
@@ -263,6 +351,17 @@ class Dashboard extends React.Component {
   }
 
   render() {
+    var date = new Date();
+    const styles = {
+      position: "absolute",
+      left:
+        (
+          30 -
+          100 * (date.getHours() * 60 + date.getMinutes()) / 1440
+        ).toString() + "%",
+      width: "100%",
+      height: "100%"
+    };
     var row = [];
     for (var i = 0; i < this.state.numlines; ++i) {
       var line = this.state.lines[i];
@@ -280,49 +379,95 @@ class Dashboard extends React.Component {
         />
       );
     }
-    return <div>{row}</div>;
+    return (
+      <div style={styles}>
+        <Timeline />
+        {row}
+      </div>
+    );
   }
 }
 
-//-------------------------------------------------------------------       ----------------------------------------------------------------------
+//-------------------------------------------------------------------CLOCK----------------------------------------------------------------------
+
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      time: new Date()
+    };
+  }
+  componentDidMount() {
+    this.intervalID = setInterval(() => this.tick(), 60000);
+  }
+  componentWillUnmount() {
+    clearInterval(this.intervalID);
+  }
+  tick() {
+    this.setState({
+      time: new Date()
+    });
+  }
+  render() {
+    return (
+      <p className="App-clock">
+        {this.state.time.getDate()}
+        {getDayWeek()}
+        {getMonthName()}
+      </p>
+    );
+  }
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------------------
+
 var numlines = test1.numLines;
 var lines = test1.lines;
+const stylesBig = {
+  position: "relative",
+  width: "100%",
+  height: "100%"
+};
+
+const greenstyle = {
+  position: "absolute",
+  left: "30%",
+  height: "100%",
+  width: "2px",
+  background: "greenyellow"
+};
 
 var dashBoard = (
-  <div>
+  <div style={stylesBig}>
+    <div class="vertical_line" style={greenstyle} />
     <Dashboard key="dash1" numLines={numlines} lines={lines} />
   </div>
 );
 
-var timebar = (
+var clock = (
   <div>
-    <timerElement />
+    <Clock />
   </div>
 );
-
-var counter = new Counter(60);
+var counter = new Counter(59);
 
 function updateLine(lines) {}
 
-var fetch$ = Rx.Observable.ajax("" + "stations").map(e => e.response);
-
 var timer$ = Rx.Observable.timer(0, 1000)
   .do(() => {
-    timerElement.innerHTML = counter.getValue();
+    //timerElement.innerHTML = counter.getValue();
     counter.tick();
   })
-  .filter(() => counter.getValue() + 1 === 60);
-
+  .filter(() => counter.getValue() + 1 === 59);
+/*
 var refresh$ = Rx.Observable.fromEvent(buttonRefresh, "click").do(() => {
   counter.reset();
-  timerElement.innerHTML = counter.getValue();
+  //timerElement.innerHTML = counter.getValue();
   counter.tick();
 });
-
-var updater$ = Rx.Observable.merge(timer$, refresh$)
-  .switchMap(val => fetch$)
-  .subscribe(lines => {
-    updateLine(lines);
-    ReactDOM.render(timebar, document.getElementById("timerbar"));
-    ReactDOM.render(dashBoard, document.getElementById("dashboard"));
-  });
+*/
+var updater$ = Rx.Observable.merge(timer$).subscribe(lines => {
+  updateLine(lines);
+  ReactDOM.render(clock, document.getElementById("timerbar"));
+  ReactDOM.render(dashBoard, document.getElementById("dashboard"));
+});

@@ -3,4 +3,137 @@ body {
   width: 100%;
   height: 100%;
   margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+.sidenav {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 64px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #333333; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+}
+
+/* The navigation menu links */
+.sidenav i {
+  padding: 8px 8px 8px 8px;
+  text-decoration: none;
+  color: #888888;
+  display: block;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #78d98d;
+}
+
+/* Style page content */
+.main {
+  margin-left: 64px; /* Same as the width of the sidebar */
+  padding: 0px 0px;
+  height: 100%;
+}
+
+.of {
+  font-family: "Roboto", sans-serif;
+  border: 2px solid white;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.activa {
+  font-family: "Roboto", sans-serif;
+  background: #53a451;
+}
+.activanext {
+  font-family: "Roboto", sans-serif;
+  background: #d9ecdb;
+}
+
+.warning {
+  font-family: "Roboto", sans-serif;
+  background: #fbca5d;
+}
+.warningnext {
+  font-family: "Roboto", sans-serif;
+  background: #fdf3d1;
+}
+.error {
+  font-family: "Roboto", sans-serif;
+  background: #cb444a;
+}
+
+.errornext {
+  font-family: "Roboto", sans-serif;
+  background: #f3d8da;
+}
+
+.currentdate_container {
+  position: absolute;
+  margin: 20px;
+  border: 2px solid #efefef;
+  height: 92px;
+  width: 369px;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: 300 !important;
+  color: #a1a1a1 !important;
+}
+
+.legend-container {
+  background: #efefef;
+  position: absolute;
+  z-index: 99;
+  margin-left: 20px;
+  border: 2px solid #efefef;
+  height: 100%;
+  width: 369px;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: 300 !important;
+  color: #a1a1a1 !important;
+}
+
+.legend-row {
+  width: 369px;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: 300 !important;
+  color: #a1a1a1 !important;
+}
+
+.currentdate_day {
+  height: 92px;
+  width: 115px;
+  font-size: 75px;
+  vertical-align: middle;
+  text-align: center;
+  display: table-cell;
+}
+.currentdate_text {
+  height: 92px;
+  width: 250px;
+  display: table-cell;
+  font-size: 22px;
+  font-weight: 400;
+}
+.currentdate_monthyear {
+  height: 46px;
+  width: 100%;
+  line-height: 65px;
+}
+.currentdate_textday {
+  height: 46px;
+  width: 100%;
+  line-height: 23px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
 }

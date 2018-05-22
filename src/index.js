@@ -14,6 +14,7 @@ var test1 = {
         {
           name: "Of1",
           codef: "0001",
+          status: "0",
           init: 1,
           final: 2,
           uniactual: 100,
@@ -22,6 +23,7 @@ var test1 = {
         {
           name: "Of30",
           codef: "0030",
+          status: "0",
           init: 2,
           final: 24,
           uniactual: 100,
@@ -37,6 +39,7 @@ var test1 = {
         {
           name: "Of2",
           codef: "0002",
+          status: "0",
           init: 0,
           final: 2,
           uniactual: 100,
@@ -45,6 +48,7 @@ var test1 = {
         {
           name: "Of3",
           codef: "0003",
+          status: "0",
           init: 2,
           final: 5,
           uniactual: 100,
@@ -60,6 +64,7 @@ var test1 = {
         {
           name: "Of4",
           codef: "0004",
+          status: "0",
           init: 0,
           final: 2,
           uniactual: 100,
@@ -68,6 +73,7 @@ var test1 = {
         {
           name: "Of5",
           codef: "0005",
+          status: "0",
           init: 6,
           final: 8,
           uniactual: 100,
@@ -83,6 +89,7 @@ var test1 = {
         {
           name: "Of6",
           codef: "0006",
+          status: "0",
           init: 0,
           final: 2,
           uniactual: 100,
@@ -91,6 +98,7 @@ var test1 = {
         {
           name: "Of7",
           codef: "0007",
+          status: "0",
           init: 2,
           final: 5,
           uniactual: 100,
@@ -99,6 +107,7 @@ var test1 = {
         {
           name: "Of8",
           codef: "0008",
+          status: "0",
           init: 5,
           final: 6,
           uniactual: 100,
@@ -107,6 +116,7 @@ var test1 = {
         {
           name: "Of9",
           codef: "0009",
+          status: "0",
           init: 7,
           final: 11,
           uniactual: 100,
@@ -122,6 +132,7 @@ var test1 = {
         {
           name: "Of10",
           codef: "0010",
+          status: "0",
           init: 0,
           final: 2,
           uniactual: 100,
@@ -137,6 +148,7 @@ var test1 = {
         {
           name: "Of11",
           codef: "0011",
+          status: "0",
           init: 0,
           final: 2,
           uniactual: 100,
@@ -152,6 +164,7 @@ var test1 = {
         {
           name: "Of12",
           codef: "0012",
+          status: "0",
           init: 0,
           final: 2,
           uniactual: 100,
@@ -229,12 +242,31 @@ class Of extends React.Component {
     this.state = {
       nameOf: props.name,
       BOM: props.code,
+      statuus: props.status,
       actunit: props.actU,
       totunit: props.endU,
       strtime: props.initT,
       endtime: props.endT
     };
+
     this.key = props.id2;
+    this.state.statusstr = "error";
+    if (this.state.statuus === "0") {
+      this.state.statusstr = "activa";
+    }
+    if (this.state.statuus === "1") {
+      this.state.statusstr = "warning";
+    }
+    if (this.state.statuus === "2") {
+      this.state.statusstr = "error";
+    }
+    var data = new Date();
+    if (
+      this.state.strtime > data.getHours() ||
+      this.state.endtime < data.getHours()
+    ) {
+      this.state.statusstr = this.state.statusstr + "next";
+    }
   }
 
   render() {
@@ -247,7 +279,12 @@ class Of extends React.Component {
       height: "100%",
       zindex: "2"
     };
-    return <button style={styles}>{this.state.nameOf}</button>;
+    var state2 = "of " + this.state.statusstr;
+    return (
+      <button class={state2} style={styles}>
+        {this.state.nameOf}
+      </button>
+    );
   }
 }
 
@@ -281,6 +318,7 @@ class Line extends React.Component {
       var of1 = this.state.ofs[i];
       var nameof = of1.name;
       var codeof = of1.codef;
+      var stateof = of1.status;
       var initof = of1.init;
       var endof = of1.final;
       var actuni = of1.uniactual;
@@ -291,6 +329,7 @@ class Line extends React.Component {
           id2={"Of" + codeof}
           name={nameof}
           code={codeof}
+          status={stateof}
           initT={initof}
           endT={endof}
           actU={actuni}
@@ -314,29 +353,44 @@ class Timeline extends React.Component {
   render() {
     const stylesglobal = {
       position: "relative",
-      border: "1px solid gray",
+      borderCollapse: "collapse",
+      border: "1px solid #e0e0e0",
       width: "100%"
     };
-    const styles = {
+    const stylesce = {
       position: "relative",
-      border: "1px solid gray",
-      width: (100 / 24).toString() + "%"
+      border: "1px solid #e0e0e0",
+      width: "100%"
+    };
+    const stylesgray = {
+      position: "relative",
+      width: (100 / 24).toString() + "%",
+      background: "#f3f2f9"
+    };
+    const styleswhite = {
+      position: "relative",
+      width: (100 / 24).toString() + "%",
+      background: "#FFFFFF"
     };
     var row = [];
     for (var i = 0; i < 24; ++i) {
-      row.push(<th style={styles}>{i + ":00"}</th>);
+      if (i % 2 == 0) {
+        row.push(<th style={stylesgray}>{i + ":00"}</th>);
+      } else {
+        row.push(<th style={styleswhite}>{i + ":00"}</th>);
+      }
     }
     return (
       <table style={stylesglobal}>
-        <tr style={stylesglobal}>{row}</tr>
+        <tr style={stylesce}>{row}</tr>
       </table>
     );
   }
 }
 
-//-------------------------------------------------------------------DASHBOARD----------------------------------------------------------------------
+//-------------------------------------------------------------------LineLegend----------------------------------------------------------------------
 
-class Dashboard extends React.Component {
+class LineLegend extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -354,12 +408,61 @@ class Dashboard extends React.Component {
     var date = new Date();
     const styles = {
       position: "absolute",
+      margin: "30px",
+      width: "1920px",
+      height: "100%"
+    };
+    const stylerow = {
+      position: "relative",
+      height: (90 / 10).toString() + "%"
+    };
+
+    var row = [];
+    for (var i = 0; i < this.state.numlines; ++i) {
+      var line = this.state.lines[i];
+      var linename = line.name;
+      var linecode = line.code;
+      row.push(
+        <div class="legend-row" style={stylerow}>
+          {linename}
+        </div>
+      );
+    }
+    return <div class="legend-container">{row}</div>;
+  }
+}
+
+//-------------------------------------------------------------------DASHBOARD----------------------------------------------------------------------
+
+class Dashboard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      numlines: props.numLines,
+      lines: [],
+      order: props.where
+    };
+
+    for (var i = 0; i < parseInt(this.state.numlines); ++i) {
+      var line = props.lines[i];
+      this.state.lines.push(line);
+    }
+  }
+
+  render() {
+    var date = new Date();
+    const styles = {
+      position: "absolute",
+      display: "inline-block",
+      width: "1920px",
       left:
         (
-          30 -
-          100 * (date.getHours() * 60 + date.getMinutes()) / 1440
+          (this.state.order * 100 -
+            100 +
+            30 -
+            100 * (date.getHours() * 60 + date.getMinutes()) / 1440) /
+          3
         ).toString() + "%",
-      width: "100%",
       height: "100%"
     };
     var row = [];
@@ -409,12 +512,32 @@ class Clock extends React.Component {
     });
   }
   render() {
+    const stylesglobal = {
+      padding: "0px 0px 16px 16px",
+      top: "16px",
+      left: "16px",
+      position: "relative",
+      borderCollapse: "collapse",
+      border: "1px solid #e0e0e0",
+      width: "264px",
+      height: "68px"
+    };
+
+    const styles = {
+      position: "absolute",
+      borderCollapse: "collapse",
+      border: "1px solid #e0e0e0",
+      width: "288px",
+      height: "84px"
+    };
     return (
-      <p className="App-clock">
-        {this.state.time.getDate()}
-        {getDayWeek()}
-        {getMonthName()}
-      </p>
+      <div class="currentdate_container">
+        <div class="currentdate_day">{this.state.time.getDate()}</div>
+        <div class="currentdate_text">
+          <div class="currentdate_monthyear">{getMonthName()}</div>
+          <div class="currentdate_textday">{getDayWeek()}</div>
+        </div>
+      </div>
     );
   }
 }
@@ -423,32 +546,42 @@ class Clock extends React.Component {
 
 var numlines = test1.numLines;
 var lines = test1.lines;
-const stylesBig = {
-  position: "relative",
-  width: "100%",
-  height: "100%"
-};
 
 const greenstyle = {
   position: "absolute",
-  left: "30%",
+  left: "10%",
   height: "100%",
   width: "2px",
-  background: "greenyellow"
+  zIndex: "9999",
+  background: "#2dbd53"
 };
 
-var dashBoard = (
-  <div style={stylesBig}>
+const linestyle = {
+  position: "absolute",
+  left: "10%",
+  height: "100%",
+  width: "2px",
+  zIndex: "9994",
+  background: "#2dbd53"
+};
+
+const stylescont = {
+  position: "absolute",
+  height: "100%",
+  width: "5760px"
+};
+
+var contDashs = (
+  <div style={stylescont}>
     <div class="vertical_line" style={greenstyle} />
-    <Dashboard key="dash1" numLines={numlines} lines={lines} />
+    <LineLegend key="lineslegend" numLines={numlines} lines={lines} />
+    <Dashboard key="dash-1" numLines={numlines} lines={lines} where="0" />
+    <Dashboard key="dash0" numLines={numlines} lines={lines} where="1" />
+    <Dashboard key="dash1" numLines={numlines} lines={lines} where="2" />
   </div>
 );
 
-var clock = (
-  <div>
-    <Clock />
-  </div>
-);
+var clock = <Clock />;
 var counter = new Counter(59);
 
 function updateLine(lines) {}
@@ -469,5 +602,5 @@ var refresh$ = Rx.Observable.fromEvent(buttonRefresh, "click").do(() => {
 var updater$ = Rx.Observable.merge(timer$).subscribe(lines => {
   updateLine(lines);
   ReactDOM.render(clock, document.getElementById("timerbar"));
-  ReactDOM.render(dashBoard, document.getElementById("dashboard"));
+  ReactDOM.render(contDashs, document.getElementById("contenedordash"));
 });

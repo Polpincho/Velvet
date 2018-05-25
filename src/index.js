@@ -4,12 +4,12 @@ import Rx from "rxjs";
 
 //var dashboard = Dashboard(defaultLatitude, defaultLongitude);
 var test1 = {
-  numLines: 7,
+  numLines: 9,
   lines: [
     {
       name: "Linia1",
       code: 0,
-      numofs: 2,
+      numofs: 5,
       of: [
         {
           name: "Of1",
@@ -21,68 +21,45 @@ var test1 = {
           uniFinal: 200
         },
         {
-          name: "Of30",
-          codef: "0030",
-          status: "0",
+          name: "Of2",
+          codef: "002",
+          status: "1",
           init: 2,
-          final: 24,
+          final: 5,
           uniactual: 100,
-          uniFinal: 100
+          uniFinal: 150
+        },
+        {
+          name: "Of3",
+          codef: "003",
+          status: "0",
+          init: 6,
+          final: 11,
+          uniactual: 50,
+          uniFinal: 200
+        },
+        {
+          name: "Of4",
+          codef: "004",
+          status: "2",
+          init: 11,
+          final: 17,
+          uniactual: 100,
+          uniFinal: 200
+        },
+        {
+          name: "Of5",
+          codef: "005",
+          status: "2",
+          init: 17,
+          final: 24,
+          uniactual: 20,
+          uniFinal: 200
         }
       ]
     },
     {
       name: "Linia2",
-      code: 0,
-      numofs: 2,
-      of: [
-        {
-          name: "Of2",
-          codef: "0002",
-          status: "0",
-          init: 0,
-          final: 2,
-          uniactual: 100,
-          uniFinal: 200
-        },
-        {
-          name: "Of3",
-          codef: "0003",
-          status: "0",
-          init: 2,
-          final: 5,
-          uniactual: 100,
-          uniFinal: 100
-        }
-      ]
-    },
-    {
-      name: "Linia3",
-      code: 0,
-      numofs: 2,
-      of: [
-        {
-          name: "Of4",
-          codef: "0004",
-          status: "0",
-          init: 0,
-          final: 2,
-          uniactual: 100,
-          uniFinal: 100
-        },
-        {
-          name: "Of5",
-          codef: "0005",
-          status: "0",
-          init: 6,
-          final: 8,
-          uniactual: 100,
-          uniFinal: 100
-        }
-      ]
-    },
-    {
-      name: "Linia4",
       code: 0,
       numofs: 4,
       of: [
@@ -93,49 +70,180 @@ var test1 = {
           init: 0,
           final: 2,
           uniactual: 100,
-          uniFinal: 100
+          uniFinal: 200
         },
         {
           name: "Of7",
           codef: "0007",
           status: "0",
           init: 2,
-          final: 5,
-          uniactual: 100,
+          final: 8,
+          uniactual: 30,
           uniFinal: 100
         },
         {
           name: "Of8",
           codef: "0008",
-          status: "0",
-          init: 5,
-          final: 6,
-          uniactual: 100,
+          status: "1",
+          init: 8,
+          final: 12,
+          uniactual: 30,
           uniFinal: 100
         },
         {
           name: "Of9",
           codef: "0009",
           status: "0",
-          init: 7,
-          final: 11,
-          uniactual: 100,
+          init: 12,
+          final: 22,
+          uniactual: 30,
           uniFinal: 100
         }
       ]
     },
     {
-      name: "Linia5",
+      name: "Linia3",
       code: 0,
-      numofs: 1,
+      numofs: 5,
       of: [
         {
           name: "Of10",
           codef: "0010",
           status: "0",
           init: 0,
+          final: 6,
+          uniactual: 100,
+          uniFinal: 500
+        },
+        {
+          name: "Of11",
+          codef: "0011",
+          status: "0",
+          init: 6,
+          final: 8,
+          uniactual: 50,
+          uniFinal: 500
+        },
+        {
+          name: "Of12",
+          codef: "0012",
+          status: "2",
+          init: 8,
+          final: 9,
+          uniactual: 50,
+          uniFinal: 50
+        },
+        {
+          name: "Of13",
+          codef: "0013",
+          status: "0",
+          init: 10,
+          final: 19,
+          uniactual: 50,
+          uniFinal: 500
+        },
+        {
+          name: "Of14",
+          codef: "0014",
+          status: "1",
+          init: 20,
+          final: 24,
+          uniactual: 200,
+          uniFinal: 500
+        }
+      ]
+    },
+    {
+      name: "Linia4",
+      code: 0,
+      numofs: 5,
+      of: [
+        {
+          name: "Of15",
+          codef: "0015",
+          status: "0",
+          init: 0,
+          final: 5,
+          uniactual: 100,
+          uniFinal: 500
+        },
+        {
+          name: "Of16",
+          codef: "0016",
+          status: "0",
+          init: 5,
+          final: 13,
+          uniactual: 50,
+          uniFinal: 500
+        },
+        {
+          name: "Of17",
+          codef: "0017",
+          status: "2",
+          init: 13,
+          final: 18,
+          uniactual: 50,
+          uniFinal: 50
+        },
+        {
+          name: "Of18",
+          codef: "0018",
+          status: "2",
+          init: 18,
+          final: 19,
+          uniactual: 50,
+          uniFinal: 500
+        },
+        {
+          name: "Of19",
+          codef: "0019",
+          status: "1",
+          init: 20,
+          final: 24,
+          uniactual: 200,
+          uniFinal: 500
+        }
+      ]
+    },
+    {
+      name: "Linia5",
+      code: 0,
+      numofs: 4,
+      of: [
+        {
+          name: "Of20",
+          codef: "00020",
+          status: "0",
+          init: 0,
           final: 2,
           uniactual: 100,
+          uniFinal: 200
+        },
+        {
+          name: "Of21",
+          codef: "0021",
+          status: "0",
+          init: 2,
+          final: 8,
+          uniactual: 30,
+          uniFinal: 100
+        },
+        {
+          name: "Of22",
+          codef: "0022",
+          status: "1",
+          init: 8,
+          final: 12,
+          uniactual: 30,
+          uniFinal: 100
+        },
+        {
+          name: "Of23",
+          codef: "0023",
+          status: "0",
+          init: 12,
+          final: 24,
+          uniactual: 30,
           uniFinal: 100
         }
       ]
@@ -143,32 +251,162 @@ var test1 = {
     {
       name: "Linia6",
       code: 0,
-      numofs: 1,
-      of: [
-        {
-          name: "Of11",
-          codef: "0011",
-          status: "0",
-          init: 0,
-          final: 2,
-          uniactual: 100,
-          uniFinal: 100
-        }
-      ]
+      numofs: 0,
+      of: []
     },
     {
       name: "Linia7",
       code: 0,
-      numofs: 1,
+      numofs: 5,
       of: [
         {
-          name: "Of12",
-          codef: "0012",
+          name: "Of24",
+          codef: "0024",
           status: "0",
-          init: 0,
+          init: 1,
           final: 2,
           uniactual: 100,
-          uniFinal: 100
+          uniFinal: 200
+        },
+        {
+          name: "Of25",
+          codef: "0025",
+          status: "1",
+          init: 2,
+          final: 5,
+          uniactual: 100,
+          uniFinal: 150
+        },
+        {
+          name: "Of26",
+          codef: "0026",
+          status: "0",
+          init: 6,
+          final: 12,
+          uniactual: 50,
+          uniFinal: 200
+        },
+        {
+          name: "Of27",
+          codef: "0027",
+          status: "2",
+          init: 13,
+          final: 17,
+          uniactual: 100,
+          uniFinal: 200
+        },
+        {
+          name: "Of28",
+          codef: "0028",
+          status: "1",
+          init: 17,
+          final: 24,
+          uniactual: 20,
+          uniFinal: 200
+        }
+      ]
+    },
+    {
+      name: "Linia8",
+      code: 0,
+      numofs: 5,
+      of: [
+        {
+          name: "Of29",
+          codef: "0029",
+          status: "0",
+          init: 0,
+          final: 4,
+          uniactual: 100,
+          uniFinal: 500
+        },
+        {
+          name: "Of30",
+          codef: "0030",
+          status: "0",
+          init: 5,
+          final: 6,
+          uniactual: 50,
+          uniFinal: 500
+        },
+        {
+          name: "Of31",
+          codef: "0031",
+          status: "2",
+          init: 6,
+          final: 9,
+          uniactual: 50,
+          uniFinal: 50
+        },
+        {
+          name: "Of32",
+          codef: "0032",
+          status: "0",
+          init: 10,
+          final: 20,
+          uniactual: 50,
+          uniFinal: 500
+        },
+        {
+          name: "Of33",
+          codef: "0033",
+          status: "0",
+          init: 20,
+          final: 24,
+          uniactual: 200,
+          uniFinal: 500
+        }
+      ]
+    },
+    {
+      name: "Linia9",
+      code: 0,
+      numofs: 5,
+      of: [
+        {
+          name: "Of34",
+          codef: "0034",
+          status: "0",
+          init: 0,
+          final: 3,
+          uniactual: 100,
+          uniFinal: 500
+        },
+        {
+          name: "Of35",
+          codef: "0035",
+          status: "1",
+          init: 4,
+          final: 8,
+          uniactual: 50,
+          uniFinal: 500
+        },
+        {
+          name: "Of36",
+          codef: "0036",
+          status: "2",
+          init: 8,
+          final: 10,
+          uniactual: 50,
+          uniFinal: 50
+        },
+        {
+          name: "Of37",
+          codef: "0037",
+          status: "0",
+          init: 10,
+          final: 19,
+          uniactual: 50,
+          uniFinal: 500
+        },
+        {
+          name: "Of38",
+          codef: "0038",
+          status: "1",
+          init: 19,
+          final: 24,
+          uniactual: 200,
+          uniFinal: 500
         }
       ]
     }
@@ -177,6 +415,10 @@ var test1 = {
 
 var timerElement = document.querySelector("#timer");
 var buttonRefresh = document.querySelector("#button-refresh");
+
+var button = true;
+var line = 2;
+
 //-----------------------------------------------------FUNCTIONS---------------------------------------------------
 
 function getDayWeek() {
@@ -246,10 +488,25 @@ class Of extends React.Component {
       actunit: props.actU,
       totunit: props.endU,
       strtime: props.initT,
-      endtime: props.endT
+      endtime: props.endT,
+      time: new Date()
     };
 
     this.key = props.id2;
+  }
+  componentDidMount() {
+    this.intervalID = setInterval(() => this.tick(), 1000);
+  }
+  componentWillUnmount() {
+    clearInterval(this.intervalID);
+  }
+  tick() {
+    this.setState({
+      time: new Date()
+    });
+  }
+
+  render() {
     this.state.statusstr = "error";
     if (this.state.statuus === "0") {
       this.state.statusstr = "activa";
@@ -260,16 +517,13 @@ class Of extends React.Component {
     if (this.state.statuus === "2") {
       this.state.statusstr = "error";
     }
-    var data = new Date();
+    var data = this.state.time;
     if (
       this.state.strtime > data.getHours() ||
-      this.state.endtime < data.getHours()
+      this.state.endtime <= data.getHours()
     ) {
       this.state.statusstr = this.state.statusstr + "next";
     }
-  }
-
-  render() {
     var percmov = this.state.strtime / 24 * 100;
     var perc = (this.state.endtime - this.state.strtime) / 24 * 100;
     const styles = {
@@ -277,6 +531,7 @@ class Of extends React.Component {
       left: percmov.toString() + "%",
       width: perc.toString() + "%",
       height: "100%",
+      top: "0%",
       zindex: "2"
     };
     var state2 = "of " + this.state.statusstr;
@@ -288,6 +543,85 @@ class Of extends React.Component {
   }
 }
 
+//----------------------------------------------------------------------DetailZone--------------------------------------------------------------------------
+
+class DetailZone extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      nameOf: props.name,
+      OfAc: props.OfAct,
+      Ofs: props.Ofs,
+      time: new Date()
+    };
+
+    this.key = props.id2;
+  }
+  componentDidMount() {
+    this.intervalID = setInterval(() => this.tick(), 1000);
+  }
+  componentWillUnmount() {
+    clearInterval(this.intervalID);
+  }
+  tick() {
+    this.setState({
+      time: new Date()
+    });
+  }
+
+  render() {
+    const style2 = {
+      position: "absolute",
+      display: "flex",
+      width: (screen.width - 70).toString() + "px",
+      height: "300px",
+      top: (3 + line * 11).toString() + "%"
+    };
+    var date = this.state.time;
+    return (
+      <div class="detailContainer" style={style2}>
+        <div class="ofcontainer" />
+        <div class="ofcontainer" />
+        <div class="ofcontainer">
+          <div />
+        </div>
+      </div>
+    );
+  }
+}
+
+//----------------------------------------------------------------------DetailContent--------------------------------------------------------------------------
+
+class DetailContent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      nameOf: props.name,
+      OfAc: props.OfAct,
+      Ofs: props.Ofs,
+      time: new Date()
+    };
+
+    this.key = props.id2;
+  }
+  componentDidMount() {
+    this.intervalID = setInterval(() => this.tick(), 1000);
+  }
+  componentWillUnmount() {
+    clearInterval(this.intervalID);
+  }
+  tick() {
+    this.setState({
+      time: new Date()
+    });
+  }
+
+  render() {
+    var date = this.state.time;
+    return <div class="detailContainer" />;
+  }
+}
+
 //---------------------------------------------------------------------LINE-------------------------------------------------------------------------
 
 class Line extends React.Component {
@@ -295,10 +629,13 @@ class Line extends React.Component {
     super(props);
     this.key = props.key2;
     this.state = {
+      name: props.linename,
       numofs: props.numofs,
       heigth: props.numLine,
       key2: props.key2,
-      ofs: []
+      ofs: [],
+      active: props.where,
+      time: new Date()
     };
 
     for (var i = 0; i < parseInt(this.state.numofs); ++i) {
@@ -307,12 +644,47 @@ class Line extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.intervalID = setInterval(() => this.tick(), 1000);
+  }
+  componentWillUnmount() {
+    clearInterval(this.intervalID);
+  }
+  tick() {
+    this.setState({
+      time: new Date()
+    });
+  }
+
   render() {
-    const styles = {
-      position: "relative",
-      width: "100%",
-      height: (90 / 10).toString() + "%"
+    var date = this.state.time;
+    var styles;
+    if (button == true && line == this.state.heigth + 1) {
+      styles = {
+        position: "relative",
+        width: "100%",
+        height: (90 / 10).toString() + "%",
+        marginBottom: "400px"
+      };
+    } else
+      var styles = {
+        position: "relative",
+        width: "100%",
+        height: (90 / 10).toString() + "%"
+      };
+
+    const stylerow = {
+      position: "sticky",
+      zIndex: "99",
+      width: "369px",
+      height: "100%",
+      left: "84px"
     };
+
+    const styletext = {
+      verticalalign: "middle"
+    };
+
     var row = [];
     for (var i = 0; i < this.state.numofs; ++i) {
       var of1 = this.state.ofs[i];
@@ -337,11 +709,27 @@ class Line extends React.Component {
         />
       );
     }
-    return (
-      <div key={this.state.key2} style={styles}>
-        {row}
-      </div>
-    );
+    if (this.state.active == 1) {
+      return (
+        <div key={this.state.key2} style={styles}>
+          <div class="legend-row" style={stylerow}>
+            <span class="numberCircle" style={styletext}>
+              {this.state.heigth + 1}
+            </span>
+            <span class="linename" style={styletext}>
+              ACTIVIA LIMA LIMON 0% X4
+            </span>
+          </div>
+          {row}
+        </div>
+      );
+    } else {
+      return (
+        <div key={this.state.key2} style={styles}>
+          {row}
+        </div>
+      );
+    }
   }
 }
 
@@ -388,50 +776,6 @@ class Timeline extends React.Component {
   }
 }
 
-//-------------------------------------------------------------------LineLegend----------------------------------------------------------------------
-
-class LineLegend extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      numlines: props.numLines,
-      lines: []
-    };
-
-    for (var i = 0; i < parseInt(this.state.numlines); ++i) {
-      var line = props.lines[i];
-      this.state.lines.push(line);
-    }
-  }
-
-  render() {
-    var date = new Date();
-    const styles = {
-      position: "absolute",
-      margin: "30px",
-      width: "1920px",
-      height: "100%"
-    };
-    const stylerow = {
-      position: "relative",
-      height: (90 / 10).toString() + "%"
-    };
-
-    var row = [];
-    for (var i = 0; i < this.state.numlines; ++i) {
-      var line = this.state.lines[i];
-      var linename = line.name;
-      var linecode = line.code;
-      row.push(
-        <div class="legend-row" style={stylerow}>
-          {linename}
-        </div>
-      );
-    }
-    return <div class="legend-container">{row}</div>;
-  }
-}
-
 //-------------------------------------------------------------------DASHBOARD----------------------------------------------------------------------
 
 class Dashboard extends React.Component {
@@ -440,7 +784,8 @@ class Dashboard extends React.Component {
     this.state = {
       numlines: props.numLines,
       lines: [],
-      order: props.where
+      order: props.where,
+      time: new Date()
     };
 
     for (var i = 0; i < parseInt(this.state.numlines); ++i) {
@@ -449,8 +794,19 @@ class Dashboard extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.intervalID = setInterval(() => this.tick(), 1000);
+  }
+  componentWillUnmount() {
+    clearInterval(this.intervalID);
+  }
+  tick() {
+    this.setState({
+      time: new Date()
+    });
+  }
   render() {
-    var date = new Date();
+    var date = this.state.time;
     const styles = {
       position: "absolute",
       display: "inline-block",
@@ -478,7 +834,9 @@ class Dashboard extends React.Component {
           numofs={numofs}
           lines={linename}
           numLine={i}
+          linename={linename}
           ofs={ofs}
+          where={this.state.order}
         />
       );
     }
@@ -501,7 +859,7 @@ class Clock extends React.Component {
     };
   }
   componentDidMount() {
-    this.intervalID = setInterval(() => this.tick(), 60000);
+    this.intervalID = setInterval(() => this.tick(), 1000);
   }
   componentWillUnmount() {
     clearInterval(this.intervalID);
@@ -535,7 +893,10 @@ class Clock extends React.Component {
         <div class="currentdate_day">{this.state.time.getDate()}</div>
         <div class="currentdate_text">
           <div class="currentdate_monthyear">{getMonthName()}</div>
-          <div class="currentdate_textday">{getDayWeek()}</div>
+          <div class="currentdate_textday">
+            {getDayWeek()}
+            {this.state.time.getSeconds()}
+          </div>
         </div>
       </div>
     );
@@ -574,17 +935,27 @@ const stylescont = {
 var contDashs = (
   <div style={stylescont}>
     <div class="vertical_line" style={greenstyle} />
-    <LineLegend key="lineslegend" numLines={numlines} lines={lines} />
     <Dashboard key="dash-1" numLines={numlines} lines={lines} where="0" />
     <Dashboard key="dash0" numLines={numlines} lines={lines} where="1" />
     <Dashboard key="dash1" numLines={numlines} lines={lines} where="2" />
+    <DetailZone />
   </div>
 );
 
 var clock = <Clock />;
 var counter = new Counter(59);
 
-function updateLine(lines) {}
+function updateLine(linesv) {
+  contDashs = (
+    <div style={stylescont}>
+      <div class="vertical_line" style={greenstyle} />
+      <Dashboard key="dash-1" numLines={numlines} lines={lines} where="0" />
+      <Dashboard key="dash0" numLines={numlines} lines={lines} where="1" />
+      <Dashboard key="dash1" numLines={numlines} lines={lines} where="2" />
+      <DetailZone />
+    </div>
+  );
+}
 
 var timer$ = Rx.Observable.timer(0, 1000)
   .do(() => {

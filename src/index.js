@@ -580,7 +580,9 @@ class DetailZone extends React.Component {
     var date = this.state.time;
     return (
       <div class="detailContainer" style={style2}>
-        <div class="ofcontainer" />
+        <div class="ofcontainer ">
+          <div> Activia FRESA 0% </div>
+        </div>
         <div class="ofcontainer" />
         <div class="ofcontainer">
           <div />

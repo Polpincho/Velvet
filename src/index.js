@@ -416,8 +416,8 @@ var test1 = {
 var timerElement = document.querySelector("#timer");
 var buttonRefresh = document.querySelector("#button-refresh");
 
-var button = true;
-var line = 2;
+var button = false;
+var line = 9;
 
 //-----------------------------------------------------FUNCTIONS---------------------------------------------------
 
@@ -456,6 +456,30 @@ function getMonthName() {
   return n;
 }
 
+function openDetails(elmnt, linem) {
+  if (button == true) {
+    if (line == linem) {
+      button = false;
+    } else {
+      line = linem;
+    }
+  } else {
+    button = true;
+    line = linem;
+  }
+  var event = new CustomEvent("newMessage", {
+    detail: {
+      message: "Hello World!",
+      line: linem
+    },
+    bubbles: true,
+    cancelable: true
+  });
+
+  timerElement.dispatchEvent(event);
+  console.log(line + " " + button);
+}
+
 //-------------------------------------------------------------------COUNTER-------------------------------------------------------------------------
 
 class Counter {
@@ -489,6 +513,7 @@ class Of extends React.Component {
       totunit: props.endU,
       strtime: props.initT,
       endtime: props.endT,
+      line: props.line,
       time: new Date()
     };
 
@@ -536,7 +561,11 @@ class Of extends React.Component {
     };
     var state2 = "of " + this.state.statusstr;
     return (
-      <button class={state2} style={styles}>
+      <button
+        class={state2}
+        style={styles}
+        onclick="openDetails(this, {this.state.line} )"
+      >
         {this.state.nameOf}
       </button>
     );
@@ -572,20 +601,308 @@ class DetailZone extends React.Component {
   render() {
     const style2 = {
       position: "absolute",
-      display: "flex",
-      width: (screen.width - 70).toString() + "px",
-      height: "300px",
-      top: (3 + line * 11).toString() + "%"
+      height: "500px",
+      width: "33%",
+      top: (3 + line * 11).toString() + "%",
+      zIndex: "6"
+    };
+    const style3 = {
+      height: "100%",
+      width: "33%"
+    };
+    const styleimg1 = {
+      borderRadius: "50%",
+      height: "30px",
+      width: "30px",
+      background: "#2dbd53"
     };
     var date = this.state.time;
     return (
-      <div class="detailContainer" style={style2}>
-        <div class="ofcontainer ">
-          <div> Activia FRESA 0% </div>
-        </div>
-        <div class="ofcontainer" />
-        <div class="ofcontainer">
-          <div />
+      <div class="container" style={style2}>
+        <div class="row" style={style3}>
+          <div class="column col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <div class="column panel1 col-md-12">
+              <div class="panel1-header">
+                <div class="of-data">
+                  <span>Actual</span>
+                </div>
+                <div class="of-time">
+                  <span>02:30 - 10:55</span>
+                </div>
+              </div>
+              <div class="líneacolor" />
+              <div class="contenido">
+                <div class="row">
+                  <div class="col-md-3">
+                    <percent-display percent="70" side="" colors="" />
+                  </div>
+                  <div class="col-md-9">
+                    <div class="row">
+                      <div class="col-md-12">OIKOS POMELO x2</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">OF</div>
+                      <div class="col-md-6">100940713</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">BOM</div>
+                      <div class="col-md-6">135430-0101</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">Unidades</div>
+                      <div class="col-md-6">21700/31000</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row table-container table-condensed">
+                  <div class="container col-md-12">
+                    <table class="table borderless-table">
+                      <thead>
+                        <th class="text-center text-sm-center">Material</th>
+                        <th class="text-center text-sm-center">Estado</th>
+                        <th class="text-center text-sm-center">Disponible</th>
+                        <th class="text-center text-sm-center">Requerido</th>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="text-center text-sm-center">
+                            <img src="Imagen1.png" style={styleimg1} />
+                          </td>
+                          <td class="text-center text-sm-center">Ok</td>
+                          <td class="text-center text-sm-center">31000</td>
+                          <td class="text-center text-sm-center">31000</td>
+                        </tr>
+                        <tr>
+                          <td class="text-center text-sm-center">
+                            <img src="Imagen2.png" style={styleimg1} />
+                          </td>
+                          <td class="text-center text-sm-center">Ok</td>
+                          <td class="text-center text-sm-center">26000</td>
+                          <td class="text-center text-sm-center">15500</td>
+                        </tr>
+                        <tr>
+                          <td class="text-center text-sm-center">
+                            <img src="Imagen3.png" style={styleimg1} />
+                          </td>
+                          <td class="text-center text-sm-center">Ok</td>
+                          <td class="text-center text-sm-center">60000</td>
+                          <td class="text-center text-sm-center">31000</td>
+                        </tr>
+                        <tr>
+                          <td class="text-center text-sm-center">
+                            <img src="Imagen4.png" style={styleimg1} />
+                          </td>
+                          <td class="text-center text-sm-center">-</td>
+                          <td class="text-center text-sm-center">-</td>
+                          <td class="text-center text-sm-center">-</td>
+                        </tr>
+                        <tr>
+                          <td class="text-center text-sm-center">
+                            <img src="Imagen5.png" style={styleimg1} />
+                          </td>
+                          <td class="text-center text-sm-center">-</td>
+                          <td class="text-center text-sm-center">-</td>
+                          <td class="text-center text-sm-center">-</td>
+                        </tr>
+                        <tr>
+                          <td class="text-center text-sm-center">
+                            <img src="Imagen6.png" style={styleimg1} />
+                          </td>
+                          <td class="text-center text-sm-center">Ok</td>
+                          <td class="text-center text-sm-center">15000</td>
+                          <td class="text-center text-sm-center">7750</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <div class="column panel1 col-md-12">
+              <div class="panel1-header">
+                <div class="of-data">
+                  <span>Actual</span>
+                </div>
+                <div class="of-time">
+                  <span>02:30 - 10:55</span>
+                </div>
+              </div>
+              <div class="líneacolor" />
+              <div class="contenido">
+                <div class="row">
+                  <div class="col-md-3">
+                    <percent-display percent="70" side="" colors="" />
+                  </div>
+                  <div class="col-md-9">
+                    <div class="row">
+                      <div class="col-md-12">OIKOS POMELO x2</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">OF</div>
+                      <div class="col-md-6">100940713</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">BOM</div>
+                      <div class="col-md-6">135430-0101</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">Unidades</div>
+                      <div class="col-md-6">21700/31000</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row table-container table-condensed">
+                  <div class="container col-md-12">
+                    <table class="table borderless-table">
+                      <thead>
+                        <th class="text-center text-sm-center">Material</th>
+                        <th class="text-center text-sm-center">Estado</th>
+                        <th class="text-center text-sm-center">Disponible</th>
+                        <th class="text-center text-sm-center">Requerido</th>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="text-center text-sm-center">
+                            <img src="Imagen1.png" style={styleimg1} />
+                          </td>
+                          <td class="text-center text-sm-center">Ok</td>
+                          <td class="text-center text-sm-center">31000</td>
+                          <td class="text-center text-sm-center">31000</td>
+                        </tr>
+                        <tr>
+                          <td class="text-center text-sm-center">
+                            <img src="Imagen2.png" style={styleimg1} />
+                          </td>
+                          <td class="text-center text-sm-center">Ok</td>
+                          <td class="text-center text-sm-center">26000</td>
+                          <td class="text-center text-sm-center">15500</td>
+                        </tr>
+                        <tr>
+                          <td class="text-center text-sm-center">
+                            <img src="Imagen3.png" style={styleimg1} />
+                          </td>
+                          <td class="text-center text-sm-center">Ok</td>
+                          <td class="text-center text-sm-center">60000</td>
+                          <td class="text-center text-sm-center">31000</td>
+                        </tr>
+                        <tr>
+                          <td class="text-center text-sm-center">
+                            <img src="Imagen4.png" style={styleimg1} />
+                          </td>
+                          <td class="text-center text-sm-center">-</td>
+                          <td class="text-center text-sm-center">-</td>
+                          <td class="text-center text-sm-center">-</td>
+                        </tr>
+                        <tr>
+                          <td class="text-center text-sm-center">
+                            <img src="Imagen5.png" style={styleimg1} />
+                          </td>
+                          <td class="text-center text-sm-center">-</td>
+                          <td class="text-center text-sm-center">-</td>
+                          <td class="text-center text-sm-center">-</td>
+                        </tr>
+                        <tr>
+                          <td class="text-center text-sm-center">
+                            <img src="Imagen6.png" style={styleimg1} />
+                          </td>
+                          <td class="text-center text-sm-center">Ok</td>
+                          <td class="text-center text-sm-center">15000</td>
+                          <td class="text-center text-sm-center">7750</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <div class="column panel1 col-md-12">
+              <div class="panel1-header">
+                <div class="of-data">
+                  <span>Actual</span>
+                </div>
+                <div class="of-time">
+                  <span>02:30 - 10:55</span>
+                </div>
+              </div>
+              <div class="líneacolor" />
+              <div class="contenido">
+                <div class="row">
+                  <div class="col-md-3">a</div>
+                  <div class="col-md-9">
+                    <div class="row">
+                      <div class="col-md-12">1</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">2</div>
+                      <div class="col-md-6">2.1</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">3</div>
+                      <div class="col-md-6">3.1</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">4</div>
+                      <div class="col-md-6">4.1</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row table-container table-condensed">
+                  <div class="container col-md-12">
+                    <table class="table borderless-table">
+                      <thead>
+                        <th class="text-center text-sm-center">Material</th>
+                        <th class="text-center text-sm-center">Estado</th>
+                        <th class="text-center text-sm-center">Disponible</th>
+                        <th class="text-center text-sm-center">Requerido</th>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="text-center text-sm-center">1</td>
+                          <td class="text-center text-sm-center">2</td>
+                          <td class="text-center text-sm-center">3</td>
+                          <td class="text-center text-sm-center">4</td>
+                        </tr>
+                        <tr>
+                          <td class="text-center text-sm-center">1</td>
+                          <td class="text-center text-sm-center">2</td>
+                          <td class="text-center text-sm-center">3</td>
+                          <td class="text-center text-sm-center">4</td>
+                        </tr>
+                        <tr>
+                          <td class="text-center text-sm-center">1</td>
+                          <td class="text-center text-sm-center">2</td>
+                          <td class="text-center text-sm-center">3</td>
+                          <td class="text-center text-sm-center">4</td>
+                        </tr>
+                        <tr>
+                          <td class="text-center text-sm-center">1</td>
+                          <td class="text-center text-sm-center">2</td>
+                          <td class="text-center text-sm-center">3</td>
+                          <td class="text-center text-sm-center">4</td>
+                        </tr>
+                        <tr>
+                          <td class="text-center text-sm-center">1</td>
+                          <td class="text-center text-sm-center">2</td>
+                          <td class="text-center text-sm-center">3</td>
+                          <td class="text-center text-sm-center">4</td>
+                        </tr>
+                        <tr>
+                          <td class="text-center text-sm-center">1</td>
+                          <td class="text-center text-sm-center">2</td>
+                          <td class="text-center text-sm-center">3</td>
+                          <td class="text-center text-sm-center">4</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -665,14 +982,14 @@ class Line extends React.Component {
       styles = {
         position: "relative",
         width: "100%",
-        height: (90 / 10).toString() + "%",
-        marginBottom: "400px"
+        height: "11%",
+        marginBottom: "500px"
       };
     } else
       var styles = {
         position: "relative",
         width: "100%",
-        height: (90 / 10).toString() + "%"
+        height: "11%"
       };
 
     const stylerow = {
@@ -708,6 +1025,7 @@ class Line extends React.Component {
           endT={endof}
           actU={actuni}
           endU={enduni}
+          line={this.state.heigth + 1}
         />
       );
     }
@@ -913,9 +1231,10 @@ var lines = test1.lines;
 const greenstyle = {
   position: "absolute",
   left: "10%",
-  height: "100%",
+  height: "1024px",
+  top: "10px",
   width: "2px",
-  zIndex: "9999",
+  zIndex: "4",
   background: "#2dbd53"
 };
 
@@ -965,14 +1284,14 @@ var timer$ = Rx.Observable.timer(0, 1000)
     counter.tick();
   })
   .filter(() => counter.getValue() + 1 === 59);
-/*
-var refresh$ = Rx.Observable.fromEvent(buttonRefresh, "click").do(() => {
+
+var refresh$ = Rx.Observable.fromEvent(timerElement, "newMessage").do(() => {
   counter.reset();
   //timerElement.innerHTML = counter.getValue();
   counter.tick();
 });
-*/
-var updater$ = Rx.Observable.merge(timer$).subscribe(lines => {
+
+var updater$ = Rx.Observable.merge(timer$, refresh$).subscribe(lines => {
   updateLine(lines);
   ReactDOM.render(clock, document.getElementById("timerbar"));
   ReactDOM.render(contDashs, document.getElementById("contenedordash"));

@@ -118,6 +118,44 @@ body {
   line-height: 23px;
 }
 
+.detailof_container {
+  position: absolute;
+  margin: 10px;
+  border: 2px solid #efefef;
+  height: 369px;
+  width: 369px;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: 300 !important;
+  color: #a1a1a1 !important;
+}
+
+.detailof_supcontainer {
+  border: 2px solid #efefef;
+  height: 92px;
+  width: 369px;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: 300 !important;
+  color: #a1a1a1 !important;
+}
+
+.detailof_midcontainer {
+  border: 2px solid #efefef;
+  height: 92px;
+  width: 369px;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: 300 !important;
+  color: #a1a1a1 !important;
+}
+
+.detailof_botcontainer {
+  border: 2px solid #efefef;
+  height: 92px;
+  width: 369px;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: 300 !important;
+  color: #a1a1a1 !important;
+}
+
 .numberCircle {
   border-radius: 50%;
   width: 20px;
